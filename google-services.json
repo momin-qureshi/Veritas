@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "71901819638",
+    "project_id": "veritas-ae735",
+    "storage_bucket": "veritas-ae735.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:71901819638:android:e0d58bea4d147955b6b2d7",
+        "android_client_info": {
+          "package_name": "com.melagroup.veritas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "71901819638-cramaig0gk7cee6gev07294d7c2rsoi1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZUv9phxkHI-7YtkL-pP13fnuptV3dlgg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "71901819638-cramaig0gk7cee6gev07294d7c2rsoi1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
