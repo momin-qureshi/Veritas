@@ -107,7 +107,7 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        //loginViewModel.checkLoggedIn()
+        loginViewModel.checkLoggedIn()
     }
     private fun changeLoginState(state: Boolean){
         loginEnabled = state

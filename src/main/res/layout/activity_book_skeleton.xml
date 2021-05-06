@@ -7,12 +7,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.book.BookActivity">
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/activity_book"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
 
-        <ImageView
+        <View
             android:id="@+id/book_cover"
             android:layout_width="200dp"
             android:layout_height="300dp"
@@ -20,41 +19,28 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@mipmap/book_foreground" />
+            android:background="@color/light_transparent"/>
 
         <TextView
             android:id="@+id/label_book_name"
-            android:layout_width="wrap_content"
+            android:layout_width="128dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Very Human"
-            android:textStyle="bold"
+            android:textColor="@color/light_transparent"
+            android:background="@color/light_transparent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/book_cover" />
 
         <TextView
             android:id="@+id/label_author"
-            android:layout_width="wrap_content"
+            android:layout_width="96dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Andrew Collins"
-            android:textSize="10sp"
+            android:background="@color/light_transparent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/label_book_name" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/genre_list"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/label_author"
-            tools:itemCount="2">
-
-        </androidx.recyclerview.widget.RecyclerView>
 
         <TextView
             android:id="@+id/label_synopsis"
@@ -66,17 +52,16 @@
             android:textColor="?android:attr/textColorPrimary"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/genre_list" />
+            app:layout_constraintTop_toBottomOf="@+id/label_author" />
 
-        <TextView
+        <View
             android:id="@+id/description_synopsis"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="64dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"
-            android:text="A tyrannical ship captain decides to exact revenge on his abused crew after they form a mutiny against him, but the sailor ..."
-            android:textColor="?android:attr/textColorPrimary"
+            android:background="@color/light_transparent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/label_synopsis" />
@@ -85,39 +70,21 @@
             android:id="@+id/layout_buttons"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             android:layout_marginTop="16dp"
+            android:layout_weight="1"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/description_synopsis">
 
             <Button
-                android:id="@+id/button_read"
-                style="@style/Widget.MaterialComponents.Button"
+                android:id="@+id/button2"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Start Reading" />
 
-            <com.like.LikeButton
-                android:id="@+id/button_mylist"
-                app:icon_type="heart"
-                app:icon_size="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_width="32dp"
-                android:layout_height="match_parent"/>
         </LinearLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerview_reviews"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layout_buttons">
-
-        </androidx.recyclerview.widget.RecyclerView>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
