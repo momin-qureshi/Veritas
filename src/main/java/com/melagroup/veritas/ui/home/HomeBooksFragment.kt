@@ -163,7 +163,6 @@ class HomeBooksFragment : Fragment(), BookOnClickListener {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(HomeBooksViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
     override fun onItemClick(book: Book, position: Int) {

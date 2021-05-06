@@ -26,7 +26,9 @@ import com.like.OnLikeListener
 import com.melagroup.veritas.R
 import com.melagroup.veritas.data.model.Book
 import com.melagroup.veritas.data.model.Genre
+import com.melagroup.veritas.data.model.Review
 import com.melagroup.veritas.ui.book.genres.GenreListAdapter
+import com.melagroup.veritas.ui.book.reviews.ReviewsRecyclerViewAdapter
 import com.melagroup.veritas.ui.login.LoginViewModel
 import com.melagroup.veritas.ui.login.LoginViewModelFactory
 
@@ -50,6 +52,22 @@ class BookActivity : AppCompatActivity() {
 
         val readBookButton = findViewById<Button>(R.id.button_read)
         val favoritesButton = findViewById<LikeButton>(R.id.button_mylist)
+
+        val genreRecyclerView: RecyclerView = findViewById(R.id.genre_list)
+        genreRecyclerView.layoutManager = LinearLayoutManager(
+                baseContext,
+                LinearLayoutManager.HORIZONTAL,
+                false
+        )
+
+        val reviewsRecyclerView = findViewById<RecyclerView>(R.id.recyclerview_reviews)
+        val reviewsRecyclerViewAdapter = ReviewsRecyclerViewAdapter(emptyList())
+        reviewsRecyclerView.adapter = reviewsRecyclerViewAdapter
+        reviewsRecyclerView.layoutManager = LinearLayoutManager(
+                baseContext,
+                LinearLayoutManager.VERTICAL,
+                false
+        )
 
         val skeletonScreen = Skeleton.bind(findViewById<View>(R.id.activity_book))
             .load(R.layout.activity_book_skeleton)
@@ -77,6 +95,12 @@ class BookActivity : AppCompatActivity() {
 
                 author.text = authorNames.subSequence(0, authorNames.length-1)
 
+                val genre_list = mutableListOf<Genre>()
+                for (genre in it["genres"] as ArrayList<*>)
+                    genre_list.add(Genre("", genre as String?))
+                genreRecyclerView.adapter =  GenreListAdapter(genre_list)
+
+
                 val url = "books/covers/${it["photo_url"] as String}"
                 val ref = storageReference.reference
                 Log.d("Book", url)
@@ -91,22 +115,21 @@ class BookActivity : AppCompatActivity() {
                         override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
                             //do something when picture already loaded
                             skeletonScreen.hide()
-
-                            val genreRecyclerView: RecyclerView = findViewById(R.id.genre_list)
-                            val genre_list = mutableListOf<Genre>()
-                            for (genre in it["genres"] as ArrayList<*>)
-                                genre_list.add(Genre("", genre as String?))
-                            genreRecyclerView.adapter =  GenreListAdapter(genre_list)
-                            genreRecyclerView.layoutManager = LinearLayoutManager(
-                                baseContext,
-                                LinearLayoutManager.HORIZONTAL,
-                                false
-                            )
                             return false
                         }
                     })
                     .into(coverImage)
 
+                if(it["Reviews"] != null){
+                    @Suppress("UNCHECKED_CAST")
+                    val reviews = it["Reviews"] as ArrayList<HashMap<String, Any>>
+                    val reviewList: List<Review> = reviews.map { review ->
+                        Review(user_id = review["user_id"] as String?,book_id = bookId, text = review["text"] as String?,
+                                isPositive = review["isPositive"] as Boolean, book_title = it["title"] as String?, photo_url = null)}
+                    reviewsRecyclerViewAdapter.dataSet = reviewList
+                    reviewsRecyclerViewAdapter.notifyDataSetChanged()
+
+                }
             }.addOnFailureListener{
                 Log.d("Book", "failed: $bookId")
             }

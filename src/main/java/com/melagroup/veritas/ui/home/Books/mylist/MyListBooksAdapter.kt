@@ -84,12 +84,10 @@ class MyListBooksAdapter (var dataSet: List<Book>,
             .load(ref.child(url))
             .listener(object : RequestListener<Drawable> {
             override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
-                //TODO: something on exception
                 skeletonScreen.hide()
                 return false
             }
             override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
-                //do something when picture already loaded
                 skeletonScreen.hide()
                 return false
             }

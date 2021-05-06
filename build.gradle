@@ -75,6 +75,9 @@ dependencies {
     // Like Button
     implementation 'com.github.jd-alexander:LikeButton:0.2.3'
 
+    // Material Search
+    implementation 'com.miguelcatalan:materialsearchview:1.4.0'
+
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
